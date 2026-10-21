@@ -26,3 +26,10 @@ The trade-off is per-key independence: if two keys are correlated (e.g. `tenant`
 ## Edge to know about
 
 With `ceiling=0`, every value is treated as an overflow on first sight. Use it only when you want the limiter to surface every new value without storing anything. Also, because buckets store values in a Python `set`, values must be hashable — a list or dict as an attribute value will raise `TypeError`. Use tuples or strings for complex values.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
