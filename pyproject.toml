@@ -1,6 +1,6 @@
 [project]
 name = "log-record-cardinality-limiter"
-version = "0.1.0"
+version = "0.1.1"
 description = "Limits distinct values per attribute key in structured logs, dropping or marking overflow"
 requires-python = ">=3.10"
 dependencies = []
